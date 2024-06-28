@@ -1,0 +1,35 @@
+
+
+{% extends 'base.html'%}
+
+{% block content %}
+
+    <h3> Products Details</h3>
+    <div class="container">
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{eachProduct.image.url }}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{eachProduct.name}}</h5>
+                   <h3 class="card-subtitle">{{eachProduct.price}}</h3>
+                  <p class="card-text">{{eachProduct.description}}</p>
+                  <p class="card-text"><small class="text-body-secondary">Last updated {{released_on}} ago</small></p>
+                  <a href="{% url 'updatepro' eachProduct.id %}"><button type="button" class="btn btn-primary">Update</button></a>
+                  <a href="{% url 'deleteProduct' eachProduct.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                  <!-- <button type="button" class="btn btn-light">Light</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+    </div>
+
+
+{% endblock %}

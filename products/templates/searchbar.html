@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+<h5>Search Result</h5>
+<div class="container">
+    {% if pro %}
+    <div class="container">
+      <div class="row justify-content-center">
+        {% for product in pro %}
+            <div class="col-md-4">
+              <div class="card m-3" style="width: 18rem;">
+                <a href="products/{{product.id}}"><img src="{{product.image.url}}" class="card-img-top" alt="..."></a>
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                      <h3 class="card-subtitle">{{product.price}}</h3>
+                      <p class="card-text">{{product.description}}</p>
+                      <p class="card-text mt-1">{{product.released_on}}</p>
+                    <a href="products/{{product.id}}" class="btn btn-primary">Details</a>
+                  </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+        
+      {% else %}
+        <h3 align="center" style="color:blueviolet" ><i class="bi bi-ev-front-fill"></i>No products Found in the Database </h3>
+    
+      {%endif%}
+</div>
+
+
+{% endblock %}
+
+
+

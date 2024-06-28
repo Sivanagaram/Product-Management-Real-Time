@@ -1,0 +1,106 @@
+
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+    <h3 class="text-center mt-2">Show Products({{num}})</h3>
+  
+
+
+    {% if pro %}
+    <div class="container">
+      <div class="row justify-content-center">
+        {% for product in pro %}
+            <div class="col-md-4">
+              <div class="card m-3" style="width: 18rem;">
+                <a href="products/{{product.id}}"><img src="{{product.image.url}}" class="card-img-top" alt="..."></a>
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                      <h3 class="card-subtitle">{{product.price}}</h3>
+                      <p class="card-text">{{product.description}}</p>
+                      <p class="card-text mt-1">{{product.released_on}}</p>
+                    <a href="products/{{product.id}}" class="btn btn-primary">Details</a>
+                  </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+        
+      {% else %}
+        <h3 align="center" style="color:blueviolet" ><i class="bi bi-ev-front-fill"></i>No products Found in the Database </h3>
+    
+      {%endif%}
+
+      <h5>Pagination</h5>
+      <div class="row m-5">
+        <div class="col-md-12 m-3">
+          {% if pro.has_other_pages %}
+            <ul class="pagination">
+              {% if pro.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{ pro.previous_page_number }}" class="page-link">Previous</a>
+                </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a href="?page=1" class="page-link">Previous</a>
+              </li>
+             
+
+              {% endif %}
+
+              <!---gengerating the pagination number-->
+              {% for i in pro.paginator.page_range %}
+                  {% if pro.number == i %}
+                  <li class="page-item active">
+                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                  </li>
+                  {% else %}
+                    <li class="page-item">
+                      <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                    </li>
+                 
+
+              {% endif %}
+              {% endfor %}
+
+
+              <!--generating the pagination number ends-->
+
+              {% if pro.has_next %}
+              <li class="page-item">
+                <a href="?page={{ pro.next_page_number }}" class="page-link">Next</a>  
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a href="?page{{ pro.paginator.number_pages }} " class="page-link">Next</a>
+              </li>
+
+
+              {% endif %}
+
+
+
+
+            </ul>
+
+ 
+
+          {% endif %}
+        </div>
+      </div>
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
